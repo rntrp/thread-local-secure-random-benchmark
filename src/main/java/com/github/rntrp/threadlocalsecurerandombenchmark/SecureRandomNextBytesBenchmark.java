@@ -1,4 +1,4 @@
-package com.github.rntrp;
+package com.github.rntrp.threadlocalsecurerandombenchmark;
 
 import org.openjdk.jmh.annotations.*;
 

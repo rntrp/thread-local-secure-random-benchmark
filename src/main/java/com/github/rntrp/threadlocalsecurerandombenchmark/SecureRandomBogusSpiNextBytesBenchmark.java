@@ -1,5 +1,7 @@
-package com.github.rntrp;
+package com.github.rntrp.threadlocalsecurerandombenchmark;
 
+import com.github.rntrp.threadlocalsecurerandombenchmark.bogusspi.SecureRandomConcurrent;
+import com.github.rntrp.threadlocalsecurerandombenchmark.bogusspi.SecureRandomSynchronized;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.concurrent.TimeUnit;
@@ -14,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class SecureRandomBogusSpiNextBytesBenchmark {
     @Benchmark
     public byte[] newRefConcurrent(OutputState os) {
-        new SecureRandomConcurrent().nextBytes(os.buffer);
+        SecureRandomConcurrent.newInstance().nextBytes(os.buffer);
         return os.buffer;
     }
 
@@ -77,10 +79,10 @@ public class SecureRandomBogusSpiNextBytesBenchmark {
 
         @Setup
         public void setup() {
-            concurrent = new SecureRandomConcurrent();
+            concurrent = SecureRandomConcurrent.newInstance();
             sync = SecureRandomSynchronized.newSpi();
             syncSingletonSpi = SecureRandomSynchronized.singletonSpi();
-            concurrentThreadLocal = ThreadLocal.withInitial(SecureRandomConcurrent::new);
+            concurrentThreadLocal = ThreadLocal.withInitial(SecureRandomConcurrent::newInstance);
             syncThreadLocal = ThreadLocal.withInitial(SecureRandomSynchronized::newSpi);
             syncSingletonSpiThreadLocal = ThreadLocal.withInitial(SecureRandomSynchronized::singletonSpi);
         }

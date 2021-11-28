@@ -1,16 +1,20 @@
-package com.github.rntrp;
+package com.github.rntrp.threadlocalsecurerandombenchmark.bogusspi;
 
 import java.security.Provider;
 import java.security.SecureRandom;
 import java.security.SecureRandomSpi;
 import java.util.Arrays;
 
-class SecureRandomConcurrent extends SecureRandom {
+public class SecureRandomConcurrent extends SecureRandom {
     private static final SecureRandomConcurrentSpi SPI = new SecureRandomConcurrentSpi();
     private static final Provider PROVIDER = new Provider("Concurrent", 1d, "") {};
 
-    SecureRandomConcurrent() {
+    private SecureRandomConcurrent() {
         super(SPI, PROVIDER);
+    }
+
+    public static SecureRandomConcurrent newInstance() {
+        return new SecureRandomConcurrent();
     }
 
     private static class SecureRandomConcurrentSpi extends SecureRandomSpi {

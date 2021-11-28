@@ -1,11 +1,11 @@
-package com.github.rntrp;
+package com.github.rntrp.threadlocalsecurerandombenchmark.bogusspi;
 
 import java.security.Provider;
 import java.security.SecureRandom;
 import java.security.SecureRandomSpi;
 import java.util.Arrays;
 
-class SecureRandomSynchronized extends SecureRandom {
+public class SecureRandomSynchronized extends SecureRandom {
     private static final SecureRandomSynchronizedSpi SPI = new SecureRandomSynchronizedSpi();
     private static final Provider PROVIDER = new Provider("Synchronized", 1d, "") {};
 
@@ -13,11 +13,11 @@ class SecureRandomSynchronized extends SecureRandom {
         super(spi, PROVIDER);
     }
 
-    static SecureRandomSynchronized singletonSpi() {
+    public static SecureRandomSynchronized singletonSpi() {
         return new SecureRandomSynchronized(SPI);
     }
 
-    static SecureRandomSynchronized newSpi() {
+    public static SecureRandomSynchronized newSpi() {
         return new SecureRandomSynchronized(new SecureRandomSynchronizedSpi());
     }
 
