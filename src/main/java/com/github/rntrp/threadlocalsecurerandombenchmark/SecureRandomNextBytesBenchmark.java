@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 20, batchSize = 100, time = 10, timeUnit = TimeUnit.MILLISECONDS)
 @Measurement(iterations = 100, batchSize = 100, time = 10, timeUnit = TimeUnit.MILLISECONDS)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Threads(10)
+@Threads(Threads.MAX)
 @SuppressWarnings("unused")
 public class SecureRandomNextBytesBenchmark {
     // Depletes entropy pool too fast and is too slow anyway
