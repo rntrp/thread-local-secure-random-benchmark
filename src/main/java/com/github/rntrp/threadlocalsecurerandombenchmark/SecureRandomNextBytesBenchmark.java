@@ -7,9 +7,9 @@ import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @Fork(warmups = 1, value = 1)
-@Warmup(iterations = 20, batchSize = 100, time = 10, timeUnit = TimeUnit.MILLISECONDS)
-@Measurement(iterations = 100, batchSize = 100, time = 10, timeUnit = TimeUnit.MILLISECONDS)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Warmup(iterations = 20, batchSize = 100, time = 10, timeUnit = TimeUnit.MICROSECONDS)
+@Measurement(iterations = 100, batchSize = 100, time = 10, timeUnit = TimeUnit.MICROSECONDS)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 @Threads(Threads.MAX)
 @SuppressWarnings("unused")
 public class SecureRandomNextBytesBenchmark {
